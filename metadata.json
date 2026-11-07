@@ -1,0 +1,6 @@
+{
+  "name": "TaskFlow",
+  "description": "Organize Your Day. Own Your Goals. A sleek, modern To-Do list web application built with HTML5, CSS3, and Vanilla JavaScript.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TASKFLOW - Organize Your Day. Own Your Goals.</title>
+  <meta name="description" content="Organize Your Day. Own Your Goals. A sleek modern To-Do list web application built with HTML5, CSS3, and Vanilla JavaScript.">
+  
+  <!-- Google Fonts: Plus Jakarta Sans & JetBrains Mono -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  
+  <!-- Stylesheet -->
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="app-container">
+    
+    <!-- 1. Header & Brand Section -->
+    <header class="app-header">
+      <div class="brand-badge">
+        <span class="pulse-dot"></span>
+        Internship Task 2
+      </div>
+      <h1 class="brand-title">
+        TASK<span class="highlight">FLOW</span>
+      </h1>
+      <p class="brand-tagline">Organize Your Day. Own Your Goals.</p>
+    </header>
+
+    <!-- 2. Dashboard: Summary Statistics & Progress -->
+    <section class="dashboard-card" aria-label="Dashboard Overview">
+      <div class="stats-grid">
+        <div class="stat-item active">
+          <span class="stat-label">Total Tasks</span>
+          <span class="stat-value" id="total-count">0</span>
+        </div>
+        <div class="stat-item completed">
+          <span class="stat-label">Completed</span>
+          <span class="stat-value" id="completed-count">0</span>
+        </div>
+        <div class="stat-item remaining">
+          <span class="stat-label">Remaining</span>
+          <span class="stat-value" id="remaining-count">0</span>
+        </div>
+      </div>
+
+      <!-- Completion Progress Bar -->
+      <div class="progress-container">
+        <div class="progress-header">
+          <span>Overall Progress</span>
+          <span class="percentage" id="progress-percent">0%</span>
+        </div>
+        <div class="progress-track" role="progressbar" aria-valuemin="0" aria-valuemax="100">
+          <div class="progress-fill" id="progress-fill"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 3. Add Task Section -->
+    <section class="add-task-section" aria-label="Add Task Form">
+      <form id="task-form" class="task-form" autocomplete="off">
+        <div class="input-row">
+          <div class="input-wrapper">
+            <input 
+              type="text" 
+              id="task-input" 
+              class="task-input" 
+              placeholder="Add a new task... e.g. Finish JavaScript assignment" 
+              maxlength="140"
+              aria-label="New task description"
+            >
+          </div>
+          <button type="submit" class="btn-add" id="add-btn" aria-label="Add Task">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+              <line x1="12" y1="5" x2="12" y2="19"></line>
+              <line x1="5" y1="12" x2="19" y2="12"></line>
+            </svg>
+            <span>Add Task</span>
+          </button>
+        </div>
+
+        <div class="form-meta-row">
+          <div class="priority-selector">
+            <span class="priority-label">Priority:</span>
+            <div class="priority-pills">
+              <button type="button" class="priority-btn active" data-priority="low">Low</button>
+              <button type="button" class="priority-btn" data-priority="medium">Med</button>
+              <button type="button" class="priority-btn" data-priority="high">High</button>
+            </div>
+          </div>
+          <span class="input-hint">Press Enter to save instantly</span>
+        </div>
+      </form>
+    </section>
+
+    <!-- 4. Task Controls & Filtering Toolbar -->
+    <section class="list-toolbar" aria-label="Task Filters">
+      <div class="filter-tabs" role="tablist">
+        <button type="button" class="filter-tab active" data-filter="all" role="tab">All</button>
+        <button type="button" class="filter-tab" data-filter="active" role="tab">Active</button>
+        <button type="button" class="filter-tab" data-filter="completed" role="tab">Completed</button>
+      </div>
+
+      <div class="toolbar-actions">
+        <div class="search-box">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="11" cy="11" r="8"></circle>
+            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+          </svg>
+          <input 
+            type="text" 
+            id="search-input" 
+            class="search-input" 
+            placeholder="Search tasks..." 
+            aria-label="Filter tasks by text"
+          >
+        </div>
+        <button type="button" id="clear-completed-btn" class="btn-clear-completed" style="display: none;">
+          Clear Done
+        </button>
+      </div>
+    </section>
+
+    <!-- 5. Task List Container -->
+    <main class="tasks-container" aria-label="Task List Container">
+      <ul id="task-list" class="task-list" aria-live="polite">
+        <!-- Injected dynamically via script.js -->
+      </ul>
+
+      <!-- Empty State -->
+      <div id="empty-state" class="empty-state" style="display: none;">
+        <div class="empty-icon-wrap">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+            <polyline points="22 4 12 14.01 9 11.01"></polyline>
+          </svg>
+        </div>
+        <h3 class="empty-title">No tasks yet</h3>
+        <p class="empty-desc">Your task list is clean and clear. Add a task above to get started!</p>
+      </div>
+    </main>
+
+    <!-- 6. Footer Section -->
+    <footer class="app-footer">
+      <p class="footer-copy">
+        <strong>TASKFLOW</strong> &bull; Web Development Internship Task 2
+      </p>
+      <p class="footer-meta">
+        Built with HTML5, CSS3, &amp; Vanilla JavaScript &bull; Instant DOM Updates
+      </p>
+    </footer>
+
+  </div>
+
+  <!-- Vanilla JavaScript Logic -->
+  <script src="script.js"></script>
+</body>
+</html>
